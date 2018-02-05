@@ -39,24 +39,23 @@ procedencia.R <- read.table("2016_matriculados.csv", sep=";", header=T, encoding
 nivel <- procedencia.R[,1]
 depart_asp <- procedencia.R[,5]
 ciudad_asp <- procedencia.R[,6]
-codept_asp<-procedencia.R[,13]
+codept_asp<-procedencia.R[,14]
 codept_asp <-as.integer(as.character(codept_asp))
 
-codecity_asp <-procedencia.R[,15]
+codecity_asp <-procedencia.R[,16]
 codecity_asp <-as.integer(as.character(codecity_asp))
-long_asp <- procedencia.R[,16]
-lat_asp <- procedencia.R[,17]
-indi <- procedencia.R[,20]<-1
+long_asp <- procedencia.R[,17]
+lat_asp <- procedencia.R[,18]
+indi <- procedencia.R[,19]<-1
 matriculados<-data.frame(nivel,depart_asp,codecity_asp,codept_asp, ciudad_asp,long_asp, lat_asp, indi)
 
 #Omitir matriculados del extranjero
 
-matriculados <- matriculados%>%filter(depart_asp!="DEPARTAMENTO EXTRANJERO")
+matriculados <- matriculados%>%filter(depart_asp!="DEPTO EXTRANJERO")
 matriculados <- matriculados%>%filter(nivel!="POS")
-matriculados <- matriculados%>%filter(codept_asp!=666)
-matriculados <- matriculados%>%filter(codept_asp!=9999)
 matriculados <- matriculados%>%filter(codept_asp!="SIN INFORMACIÓN")
-matriculados <- matriculados%>%filter(codecity_asp!=91)
+matriculados <- matriculados%>%filter(codept_asp!=9999)
+matriculados <- matriculados%>%filter(codecity_asp!="SIN INFORMACIÓN")
 
 
 
